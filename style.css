@@ -1,0 +1,186 @@
+/* ===== Design tokens — "Paper Dojo" ===== */
+:root {
+  --bg: #f6f2e9;            /* warm paper */
+  --ink: #1d1a16;           /* warm near-black */
+  --ink-60: rgba(29,26,22,.62);
+  --ink-45: rgba(29,26,22,.45);
+  --ink-28: rgba(29,26,22,.28);
+  --line: rgba(29,26,22,.14);       /* hairline borders */
+  --accent: #c73e26;        /* vermillion */
+  --card-hover: #fdfaf3;
+  --footer-bg: #1d1a16;
+  --footer-fg: rgba(246,242,233,.6);
+  --stripe-a: rgba(29,26,22,.06);   /* placeholder stripes */
+  --stripe-b: rgba(29,26,22,.12);
+}
+[data-theme="dark"] {
+  --bg: #181512;
+  --ink: #f0e9db;
+  --ink-60: rgba(240,233,219,.62);
+  --ink-45: rgba(240,233,219,.45);
+  --ink-28: rgba(240,233,219,.28);
+  --line: rgba(240,233,219,.14);
+  --accent: #e05a40;        /* vermillion, lifted for dark bg */
+  --card-hover: #201c18;
+  --footer-bg: #100e0c;
+  --footer-fg: rgba(240,233,219,.55);
+  --stripe-a: rgba(240,233,219,.07);
+  --stripe-b: rgba(240,233,219,.13);
+}
+
+/* Cross-document page transitions: quiet crossfade between internal pages.
+   Supported in Chrome 126+/Safari 18.2+; other browsers get an instant load. */
+@view-transition { navigation: auto; }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: .22s; }
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Zen Kaku Gothic New', system-ui, sans-serif;
+  transition: background .25s ease, color .25s ease;
+}
+a { color: inherit; text-decoration: none; }
+a:hover { color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.serif { font-family: 'Shippori Mincho', serif; }
+.mono  { font-family: 'IBM Plex Mono', monospace; }
+
+/* ===== Nav ===== */
+header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 24px 56px;
+  border-bottom: 1px solid var(--line);
+}
+.wordmark { font: 700 20px 'Shippori Mincho', serif; letter-spacing: .04em; }
+nav { display: flex; align-items: center; gap: 32px; font: 500 13px 'Zen Kaku Gothic New', sans-serif; color: var(--ink-60); }
+.theme-toggle {
+  padding: 6px 12px; border: 1px solid var(--ink-28);
+  font: 500 11px 'IBM Plex Mono', monospace; color: var(--ink-60);
+  background: none; cursor: pointer;
+}
+.theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ===== Hero (landing) ===== */
+.hero {
+  display: grid; grid-template-columns: 1fr 300px; gap: 48px;
+  padding: 80px 56px 64px;
+  border-bottom: 1px solid var(--line);
+}
+.kicker { font: 500 12px 'IBM Plex Mono', monospace; letter-spacing: .3em; color: var(--accent); margin-bottom: 20px; }
+h1 { margin: 0; font: 700 72px/1.08 'Shippori Mincho', serif; letter-spacing: -.01em; }
+.lede { margin-top: 24px; max-width: 440px; font: 400 16px/1.75 'Zen Kaku Gothic New', sans-serif; color: var(--ink-60); }
+.hero-side { display: flex; justify-content: flex-end; gap: 22px; }
+.tategaki { writing-mode: vertical-rl; font: 600 26px 'Shippori Mincho', serif; letter-spacing: .5em; color: var(--ink-28); }
+
+/* ===== Placeholder art (replace with real assets) ===== */
+.ph {
+  background: repeating-linear-gradient(45deg, var(--stripe-a) 0 8px, var(--stripe-b) 8px 16px);
+  border: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: center;
+  font: 400 9px 'IBM Plex Mono', monospace; color: var(--ink-45); text-align: center;
+}
+.ph-hero { width: 180px; height: 280px; }
+.ph-icon { width: 72px; height: 72px; border-radius: 17px; }
+.ph-icon-sm { width: 64px; height: 64px; border-radius: 15px; flex: none; }
+.ph-appicon { width: 160px; height: 160px; border-radius: 36px; flex: none; }
+.ph-shot { width: 100%; aspect-ratio: 9 / 19.5; }
+
+/* ===== App group sections ===== */
+.group { padding: 56px 56px 8px; }
+.group:last-of-type { padding-bottom: 72px; }
+.group-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 28px; }
+.group-kanji { font: 700 15px 'IBM Plex Mono', monospace; letter-spacing: .24em; color: var(--accent); }
+.group-title { margin: 0; font: 700 24px 'Shippori Mincho', serif; }
+.group-rule { flex: 1; height: 1px; background: var(--line); }
+.group-count { font: 500 11px 'IBM Plex Mono', monospace; color: var(--ink-45); }
+
+.grid { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-1 { grid-template-columns: 1fr; }
+
+.card { background: var(--bg); padding: 28px 24px 26px; display: flex; flex-direction: column; gap: 16px; transition: background .15s ease; }
+.card:hover { background: var(--card-hover); }
+.card-h { flex-direction: row; align-items: center; gap: 20px; padding: 26px 24px; }
+.card h3 { margin: 0; font: 700 17px 'Shippori Mincho', serif; }
+.card p { margin: 6px 0 0; font: 400 13px/1.6 'Zen Kaku Gothic New', sans-serif; color: var(--ink-60); }
+.card-foot { margin-top: auto; display: flex; justify-content: space-between; align-items: center; }
+.tag { font: 500 10px 'IBM Plex Mono', monospace; letter-spacing: .16em; color: var(--accent); }
+.arrow { font: 700 14px 'Zen Kaku Gothic New', sans-serif; }
+.card-h .arrow { margin-left: auto; }
+
+/* ===== App detail page ===== */
+.app-hero {
+  display: grid; grid-template-columns: 1fr 300px; gap: 48px;
+  padding: 72px 56px 56px;
+  border-bottom: 1px solid var(--line);
+}
+.app-hero h1 { font-size: 56px; }
+.actions { margin-top: 32px; display: flex; gap: 16px; align-items: center; }
+.btn {
+  display: inline-block; padding: 12px 20px; border: 1px solid var(--ink-28);
+  font: 500 11px 'IBM Plex Mono', monospace; letter-spacing: .16em; color: var(--ink-60);
+  background: none; cursor: pointer;
+}
+.btn:hover { border-color: var(--accent); color: var(--accent); }
+.shot { background: var(--bg); padding: 24px; }
+
+.about { display: grid; grid-template-columns: 1fr 300px; gap: 48px; }
+.prose p { margin: 0 0 16px; max-width: 560px; font: 400 14px/1.8 'Zen Kaku Gothic New', sans-serif; color: var(--ink-60); }
+.prose h2 { margin: 36px 0 10px; font: 700 18px 'Shippori Mincho', serif; }
+.prose h2:first-child { margin-top: 0; }
+.prose ul { margin: 0 0 16px; padding-left: 20px; max-width: 560px; font: 400 14px/1.8 'Zen Kaku Gothic New', sans-serif; color: var(--ink-60); }
+.prose a { color: var(--accent); }
+.prose a:hover { text-decoration: underline; }
+
+.facts { margin: 0; border-top: 1px solid var(--line); }
+.facts > div { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 13px 0; border-bottom: 1px solid var(--line); }
+.facts dt { font: 500 10px 'IBM Plex Mono', monospace; letter-spacing: .16em; color: var(--ink-60); }
+.facts dd { margin: 0; font: 500 11px 'IBM Plex Mono', monospace; color: var(--ink); text-align: right; }
+.facts dd a { color: var(--accent); }
+
+/* ===== Text pages (privacy, 404) ===== */
+.page { padding: 72px 56px; max-width: 752px; }
+.page-title { margin: 0 0 10px; font: 700 40px/1.15 'Shippori Mincho', serif; letter-spacing: -.01em; }
+.effective { margin: 0 0 44px; font: 500 11px 'IBM Plex Mono', monospace; letter-spacing: .16em; color: var(--ink-60); }
+.backlink { display: inline-block; margin-top: 44px; font: 500 11px 'IBM Plex Mono', monospace; letter-spacing: .16em; color: var(--ink-60); }
+
+/* ===== 404 ===== */
+.notfound { padding: 120px 56px 140px; text-align: center; }
+.notfound h1 { font-size: 96px; }
+.notfound .lede { margin: 20px auto 0; }
+.notfound .actions { justify-content: center; }
+
+/* ===== Footer ===== */
+footer {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 24px 56px;
+  background: var(--footer-bg); color: var(--footer-fg);
+  font: 400 12px 'IBM Plex Mono', monospace;
+}
+.footer-privacy { letter-spacing: .14em; }
+footer a:hover { color: #e05a40; }  /* lifted vermillion: readable on the ink footer in both themes */
+
+@media (max-width: 860px) {
+  header, .hero, .app-hero, .group, .page, .notfound, footer { padding-left: 24px; padding-right: 24px; }
+  .hero, .app-hero, .about { grid-template-columns: 1fr; }
+  .hero-side { justify-content: flex-start; }
+  h1 { font-size: 48px; }
+  .app-hero h1 { font-size: 44px; }
+  .grid-3, .grid-2 { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  header { flex-wrap: wrap; gap: 12px 16px; }
+  nav { flex-wrap: wrap; gap: 14px 20px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body, .card { transition: none; }
+  html { scroll-behavior: auto; }
+  @view-transition { navigation: none; }
+}
